@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include "./views/layout/style.html"; ?>
+</head>
+<body>
+    <?php include "./views/layout/aside.html"; ?>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="container-fluid">
+            <?php include "./views/layout/header.html"; ?>
+            <!-- 修改密码 -->
+            <div class="body">
+                <div class="repass">
+                    <form id="repassForm" class="form-horizontal col-xs-offset-2">
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">原密码</label>
+                            <div class="col-xs-4">
+                                <input type="text" data-required name="tc_pass" class="form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">新密码</label>
+                            <div class="col-xs-4">
+                                <input type="password" name="tc_new_pass" data-required data-pattern="^[a-zA-Z0-9]{6}$" class="pass form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">确认密码</label>
+                            <div class="col-xs-4">
+                                <input type="text" data-required data-description="repass" data-conditional="confirm" data-describedby="repassMsg" class="form-control input-sm">
+                            </div>
+                            <div class="col-xs-3" id="repassMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-7">
+                                <input type="submit" class="btn btn-success btn-sm pull-right" value=" 修 改 ">
+                            </div>                          
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include "./views/layout/scripts.html"; ?>
+    <script>
+        require(['src/index/repass']);
+    </script>
+</body>
+</html>

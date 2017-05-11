@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include "./views/layout/style.html"; ?>
+    <link rel="stylesheet" href="/public/assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+</head>
+<body>
+    <?php include "./views/layout/aside.html"; ?>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="container-fluid">
+            <?php include "./views/layout/header.html"; ?>
+            <div class="body teacher" id="teacherManage">
+               
+            </div>
+        </div>
+    </div>
+    <?php include "./views/layout/scripts.html"; ?>
+    <script type='text/template' id="manageTpl">
+        <!-- 面包屑 -->
+        <ol class="breadcrumb">
+            <li><a href="javascript:;">讲师管理</a></li>
+            <li class="active">{{title}}</li>
+        </ol>
+        <div class="teacher-add">
+            <form action="{{action}}" class="form-horizontal col-xs-offset-2">
+                {{if tc_id}}
+                <input type="hidden" name="tc_id" value="{{tc_id}}">
+                {{/if}}
+                <div class="form-group has-feedback">
+                    <label for="" class="col-xs-3 control-label">姓名</label>
+                    <div class="col-xs-4">
+                        <input type="text" data-describedby="nameMsg" data-description="name" name="tc_name" class="form-control input-sm" data-required placeholder="讲师名称" value="{{tc_name}}">
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                    <div class="col-xs-3" id="nameMsg"></div>
+                </div>
+                {{if !tc_id}}
+                <div class="form-group has-feedback">
+                    <label for="" class="col-xs-3 control-label">密码</label>
+                    <div class="col-xs-4">
+                        <input type="password" data-describedby="passMsg" data-description="pass" data-required data-pattern="[a-zA-Z0-9]{6}" name="tc_pass" value="{{tc_pass}}" class="form-control input-sm">
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                    <div class="col-xs-3" id="passMsg"></div>
+                </div>
+                {{/if}}
+                <div class="form-group has-feedback">
+                    <label for="" class="col-xs-3 control-label">入职时间</label>
+                    <div class="col-xs-4">
+                        <input type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-language='zh-CN' value="{{tc_join_date}}" data-required name="tc_join_date" class="form-control input-sm">
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">类型</label>
+                    <div class="col-xs-2">
+                        <select name="tc_type" class="form-control input-sm">
+                            <option value="1">讲师</option>
+                            <option value="0">管理员</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">性别</label>
+                    <div class="col-xs-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="tc_gender" {{if tc_gender == 0}}checked{{/if}} value="0"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" {{if tc_gender == 1}}checked{{/if}} name="tc_gender" value="1"> 女
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-7">
+                        <input type="submit" class="btn btn-success btn-sm pull-right" value="{{btnText}}">
+                    </div>                          
+                </div>
+            </form>
+        </div>
+    </script>
+    <script>
+        require(['src/teacher/manage']);
+    </script>
+</body>
+</html>
